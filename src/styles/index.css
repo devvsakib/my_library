@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  font-family: 'Sora', sans-serif;
+  color: #232635;
+}
+.StripeElement {
+	box-shadow: 0 0px 22px -5px #0000004a;
+	padding: 20px 10px;
+	border-radius: 10px;
+}

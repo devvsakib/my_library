@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
+}
+
+body {
+    background: linear-gradient(91deg, #e7f7fe 0%, #e7f7fe 57.81%, #fbebff 81.77%, #f0fced 100%);
+}

@@ -1,0 +1,7 @@
+.nav-links{
+    @apply transition-all hover:text-primary relative duration-200 ease-linear hover:before:h-1 hover:before:w-full hover:before:bg-primary before:h-0 before:transition-all before:ease-linear before:duration-200 hover:before:-bottom-5 hover:before:left-0 before:absolute hover:before:rounded-bl hover:before:rounded-br
+}
+
+.active{
+    @apply text-primary hover:before:h-1 before:w-full before:bg-primary before:h-1 before:-bottom-5 before:left-0 before:absolute before:rounded-bl before:rounded-br
+}
