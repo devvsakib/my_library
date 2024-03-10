@@ -1,13 +1,46 @@
-import { BookTwoTone, CaretUpOutlined, CheckCircleOutlined, CheckCircleTwoTone, FlagOutlined, HeartTwoTone, ReadOutlined, SendOutlined, ShoppingTwoTone, SmileTwoTone, TagsTwoTone } from "@ant-design/icons"
-import { Tooltip } from "antd"
+import { BarChartOutlined, BookTwoTone, CaretUpOutlined, CheckCircleOutlined, CheckCircleTwoTone, FlagOutlined, HeartTwoTone, MenuOutlined, ReadOutlined, SendOutlined, ShoppingTwoTone, SmileTwoTone, VerifiedOutlined } from "@ant-design/icons"
+import { Button, Dropdown, Tooltip, Popconfirm } from "antd"
+import { FaPenClip, FaTrash } from "react-icons/fa6";
+const Card = ({ index, book, editBook, deleteBook }) => {
+    const confirm = () => deleteBook(book);
 
-const Card = ({index, book}) => {
+    const menu = [
+        {
+            title: 'Edit',
+            label: 'Edit',
+            icon: <FaPenClip />,
+            onClick: (e) => editBook(book.id)
+        },
+        {
+            title: 'Delete',
+            label: <Popconfirm
+                title="Are you sure to delete this book?"
+                description="Please confirm"
+                onConfirm={confirm}
+                okType="danger"
+            > Delete
+            </Popconfirm>,
+            icon: <FaTrash />
+        },
+    ]
+
     return (
-        <div key={index} className="p-5 rounded-md bg-white">
+        <div key={index} className="p-5 rounded-md bg-white shadow-md">
             {
                 book.recommended && (
-                    <div className="mb-5">
+                    <div className="mb-5 flex items-center justify-between">
                         <p className="text-sm text-green-500">Recommended</p>
+                        <Dropdown menu={{ items: menu }} trigger={['click']}>
+                            <div>
+                                <Button
+                                    type="text"
+                                    icon={
+                                        <MenuOutlined />
+                                    }
+                                />
+                            </div>
+                        </Dropdown>
+
                     </div>
                 )
             }

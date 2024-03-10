@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Button, DatePicker, Flex, Form, Input, Radio, Rate, Select, notification } from 'antd';
 import LayoutSize from '../Layouts/LayoutSize';
+import { v4 as uuidv4 } from 'uuid'
 
-const BookForm = ({ updateBooks }) => {
+const BookForm = ({ addBooks }) => {
     const [form] = Form.useForm();
     const [book, setBook] = useState(
         {
@@ -32,13 +33,18 @@ const BookForm = ({ updateBooks }) => {
 
     const fieldList = [
         {
+            name: 'title',
+            label: 'Title',
+            type: 'text'
+        },
+        {
             name: 'author',
             label: 'Author',
             type: 'text'
         },
         {
-            name: 'title',
-            label: 'Title',
+            name: 'publication',
+            label: 'Publication',
             type: 'text'
         },
         {
@@ -71,11 +77,6 @@ const BookForm = ({ updateBooks }) => {
             name: 'purchaseDate',
             label: 'Purchase Date',
             type: 'date'
-        },
-        {
-            name: 'publication',
-            label: 'Publication',
-            type: 'text'
         },
         {
             name: 'finishedDate',
@@ -127,6 +128,7 @@ const BookForm = ({ updateBooks }) => {
     const onFinish = (values) => {
         const updateValues = {
             ...values,
+            id: uuidv4(),
             rating: value,
             ...dates
         }
@@ -150,7 +152,7 @@ const BookForm = ({ updateBooks }) => {
         }
 
         setBook(updateValues);
-        updateBooks(updateValues);
+        addBooks(updateValues)
         // console.log('Received values of form: ', updateValues);
     };
 
@@ -250,8 +252,8 @@ const BookForm = ({ updateBooks }) => {
                 {renderForm()}
                 {isLended && (
                     <Form.Item
-                        name={isLended.toLowerCase() + 'To'}
-                        label={isLended + ' To'}
+                        name={isLended.toLowerCase() == 'lended' ? 'lendedTo' : 'browedFrom'}
+                        label={isLended == 'Lended' ? 'Lended To' : 'Browed From'}
                     >
                         <Input />
                     </Form.Item>
